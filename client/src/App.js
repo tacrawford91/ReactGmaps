@@ -4,7 +4,7 @@ import './App.css';
 import MapContainer from './Components/map'
 import ListWindow from './Components/listWindow';
 import LocationData from './locations.json';
-import _ from 'lodash';
+
 
 
 
@@ -15,6 +15,7 @@ class App extends Component {
         Rawlocations: LocationData,
         locations:  LocationData.sort((a,b) => a.state.localeCompare(b.state))
         .map(location => ({...location, selected: 1})),
+        unselected: ['']
       }
     }
     
@@ -31,12 +32,10 @@ class App extends Component {
     }
   
     toggleLocation = (locationID) => {
-      let currentLocations = this.state.locations
-      //get index of toggled location
-      let togglePlaceIndex = this.state.locations.findIndex((location) => location.id == locationID);
-      //get place and toggle its value
-      let togglePlace = this.state.locations[togglePlaceIndex];
-      //remove from locations array, add updated value, and update state
+      let current = this.state.unselected
+      current.push(locationID);
+      console.log('updated', current)
+     this.setState({unselected: current});
     }
 
   render() {
@@ -45,10 +44,10 @@ class App extends Component {
       <div className='row'>
         <div className='col-md-6'>
           <button onClick={this.removeLocation}> Remove item</button>
-          <ListWindow locations={this.state.locations} toggleLocation= {this.toggleLocation}/>
+          <ListWindow locations={this.state.locations} toggleLocation= {this.toggleLocation} unselected={this.state.unselected}/>
         </div>
         <div className='col-md-6'>
-          <MapContainer locations = {this.state.locations} />
+          <MapContainer locations ={this.state.locations} unselected={this.state.unselected}/>
         </div>
       </div>
       </div>

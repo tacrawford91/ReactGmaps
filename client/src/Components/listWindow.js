@@ -16,16 +16,17 @@ class ListWindow extends Component {
                                     <h3>{location.state}</h3>
                                     <h3>{location.id}</h3>
                                     <li>
-                                        <input type='checkbox' onClick={() =>this.props.toggleLocation(location.id)}/> {location.name} - {location.state}
+                                        <input type='checkbox' onClick={() =>this.props.toggleLocation(location.id)} checked/> {location.name} - {location.state}
                                      </li>
                                 </div> 
                         )
                     } else {
                        return (
                             <li>
-                                <input type='checkbox' onClick={ () => this.props.toggleLocation(location.id)}/> {location.name}---------{location.state} ---- {location.id}
+                                <input type='checkbox' onClick={ () => this.props.toggleLocation(location.id)} checked/> {location.name}---------{location.state} ---- {location.id}
                             </li>
-                        )}
+                            )   
+                        }
                     }
                     )               
                 }
