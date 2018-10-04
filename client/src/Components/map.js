@@ -12,7 +12,7 @@ export class MapContainer extends Component {
         <Map google={this.props.google} zoom={10}
           style={{width: '500px', height: '500px'}}
         >
-          {this.props.locations.map((location, index) => {
+          {this.props.selected.map((location, index) => {
             if(!this.props.unselected.includes(location.id)) {                
                 return (
                     <Marker name={location.name}  
