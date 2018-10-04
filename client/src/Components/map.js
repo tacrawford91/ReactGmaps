@@ -9,28 +9,31 @@ export class MapContainer extends Component {
   render() {
     return (
       <div>
-        <Map google={this.props.google} zoom={10}
+        <Map google={this.props.google} zoom={10} 
           style={{width: '500px', height: '500px'}}
         >
           {this.props.selected.map((location, index) => {
             if(!this.props.unselected.includes(location.id)) {                
                 return (
-                    <Marker name={location.name}  
-                    position={{lat: location.latitude, lng: location.longitude}}
-                    icon= {{
-                      url: 'http://maps.google.com/mapfiles/ms/icons/red.png',
-                      scale: 3}}
+                    <Marker
+                      key={location.id}
+                      name={location.name} 
+                      position={{lat: location.latitude, lng: location.longitude}}
+                      icon= {{
+                        url: 'http://maps.google.com/mapfiles/ms/icons/red.png',
+                        scale: 3}}
                     />
 
                 )
             } else {
                 return (
                   
-                  <Marker name={location.name}  
-                  position={{lat: location.latitude, lng: location.longitude}}
-                  icon= {{
-                    url: 'http://maps.google.com/mapfiles/ms/icons/grey.png',
-                    scale: 3}}
+                  <Marker name={location.name}
+                    key={location.id}  
+                    position={{lat: location.latitude, lng: location.longitude}}
+                    icon= {{
+                      url: 'http://maps.google.com/mapfiles/ms/icons/grey.png',
+                      scale: 3}}
                   />
                 )}
             }

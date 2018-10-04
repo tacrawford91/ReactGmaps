@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {RadioGroup, Radio} from 'react-radio-group';
-import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
+// import {RadioGroup, Radio} from 'react-radio-group';
+// import {Checkbox, CheckboxGroup} from 'react-checkbox-group';
 
 
 class ListWindow extends Component {

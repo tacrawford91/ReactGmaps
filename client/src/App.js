@@ -36,7 +36,10 @@ class App extends Component {
     stateSelectAll = (selectedState) => {
       let updated = [this.state.selected,... this.state.locations.filter((location) => location.state === selectedState)]
       this.setState({selected: updated});
-  
+    }
+    stateDeSelectAll = (selectedState) => {
+      let updated = [this.state.selected,... this.state.locations.filter((location) => location.state !== selectedState)]
+      this.setState({selected: updated});
     }
 
   render() {
@@ -45,7 +48,7 @@ class App extends Component {
       <div className='row'>
         <div className='col-md-6'>
           {/* <ListWindow locations={this.state.locations} toggleLocation= {this.toggleLocation} selected={this.state.selected} stateSort={this.state.stateSort} stateSelectAll={this.stateSelectAll}/> */}
-          <CheckboxWindow locations={this.state.locations} toggleLocation= {this.toggleLocation} selected={this.state.selected} stateSort={this.state.stateSort} stateSelectAll={this.stateSelectAll}/>
+          <CheckboxWindow locations={this.state.locations} toggleLocation= {this.toggleLocation} selected={this.state.selected} stateSort={this.state.stateSort} stateSelectAll={this.stateSelectAll} stateDeSelectAll={this.stateDeSelectAll}/>
         </div>
         <div className='col-md-6'>
           <MapContainer locations ={this.state.locations} unselected={this.state.unselected} selected={this.state.selected}/>

@@ -9,11 +9,14 @@ class CheckboxWindow extends Component {
             <div>
                 {Object.keys(this.props.stateSort).map((locationState) => { 
                     return (
-                        <CheckboxWrapper  
+                        <CheckboxWrapper
+                            key={locationState}  
                             stateName={locationState} 
-                            localLocations ={this.props.locations.filter((location) => location.state === locationState)} 
+                            // localLocations ={this.props.locations.filter((location) => location.state === locationState)} 
+                            localLocations={this.props.stateSort[locationState]}
                             toggleLocation={this.props.toggleLocation} 
-                            stateSelectAll={this.props.stateSelectAll} 
+                            stateSelectAll={this.props.stateSelectAll}
+                            stateDeSelectAll={this.props.stateDeSelectAll} 
                             selected = {this.props.selected}
                             />
                     )
