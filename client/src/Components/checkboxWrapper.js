@@ -59,8 +59,6 @@ class CheckboxWrapper extends Component {
                         key={showLocation.id}
                         id={showLocation.id}
                         localStore={showLocation}
-                        toggleLocation={this.props.toggleLocation}
-                        selected = {this.props.selected}
                         checked={this.state.checked.includes(showLocation.id)}
                         checkChangeHandler={this.checkChangeHandler}
                         checkUpdater={this.checkUpdater}

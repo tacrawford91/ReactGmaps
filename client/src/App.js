@@ -44,8 +44,8 @@ class App extends Component {
       <div className="App">
       <div className='row'>
         <div className='col-md-6'>
-          {/* <Search customerStates={this.state.customerStates} locations={this.state.locations} toggleLocation= {this.toggleLocation} selected={this.state.selected} stateSort={this.state.stateSort} stateSelectAll={this.stateSelectAll} stateDeSelectAll={this.stateDeSelectAll}/> */}
-          <CheckboxWindow locations={this.state.locations} toggleLocation= {this.toggleLocation} selected={this.state.selected} stateSort={this.state.stateSort} stateSelectAll={this.stateSelectAll} stateDeSelectAll={this.stateDeSelectAll}/>
+          <Search customerStates={this.state.customerStates} locations={this.state.locations} toggleLocation= {this.toggleLocation} selected={this.state.selected} stateSort={this.state.stateSort} stateSelectAll={this.stateSelectAll} stateDeSelectAll={this.stateDeSelectAll}/>
+          {/* <CheckboxWindow locations={this.state.locations} toggleLocation= {this.toggleLocation} selected={this.state.selected} stateSort={this.state.stateSort} stateSelectAll={this.stateSelectAll} stateDeSelectAll={this.stateDeSelectAll}/> */}
         </div>
         <div className='col-md-6'>
           <MapContainer locations ={this.state.locations} selected={this.state.selected}/>
