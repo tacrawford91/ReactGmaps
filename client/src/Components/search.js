@@ -1,27 +1,17 @@
-import React, {Component} from 'react'
-import SearchInput, {createFilter} from 'react-search-input'
-import CheckboxWindow from './checkboxWindow';
+import React from 'react'
+
+
 import CheckboxWrapper from './checkboxWrapper';
+import SearchInput, {createFilter} from 'react-search-input'
  
 
  
 const KEYS_TO_FILTERS = ['name', 'address', 'city', 'state', 'zip_code', 'country', 'longitude', 'latitude', 'id']
 // const KEYS_TO_FILTERS = ['name']
  
-class Search extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      searchTerm: '',
-      
-    }
-    this.searchUpdated = this.searchUpdated.bind(this)
-
-  }
- 
+class Search extends React.Component {
   render () {
-    const filteredLocations = this.props.locations.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
-    console.log('filtered', filteredLocations);
+    const filteredLocations = this.props.locations.filter(createFilter(this.props.searchTerm, KEYS_TO_FILTERS))
     const activeDisplay = filteredLocations.reduce((locations, { name, address, city, state, zip_code, country, longitude, latitude, id  }) => {
       if (!locations[state]) locations[state] = [];
       locations[state].push({name, address, city, state, zip_code, country, longitude, latitude, id});
@@ -29,12 +19,10 @@ class Search extends Component {
       }, {});
 
     return (
-      <div>
-        {console.log(activeDisplay)}
-        <SearchInput className="search-input" onChange={this.searchUpdated} />
-          {Object.keys(activeDisplay).map((locationState) => { 
-              return (
-                  <CheckboxWrapper
+          <div className='stateWrapper'>
+              {Object.keys(activeDisplay).map((locationState) => { 
+                return (
+                      <CheckboxWrapper
                       key={locationState}  
                       stateName={locationState} 
                       localLocations={activeDisplay[locationState]}
@@ -42,10 +30,10 @@ class Search extends Component {
                       stateSelectAll={this.props.stateSelectAll}
                       stateDeSelectAll={this.props.stateDeSelectAll} 
                       selected = {this.props.selected}
-                  />
-              )
-          })}
-      </div>
+                      />
+                      )
+                    })}
+          </div>
     )
   }
  

@@ -1,8 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
+
+
 import Checkbox from './checkbox';
+import stateFullName from '../stateFullName.json';
 
 
-class CheckboxWrapper extends Component {
+class CheckboxWrapper extends React.Component {
     constructor(props) {
         super(props) 
         this.state = ({
@@ -48,14 +51,16 @@ class CheckboxWrapper extends Component {
 
     render () {
         return (
-            <div>
-                <h3>{this.props.stateName} 
-                    <button className='btn' onClick={() => this.selectAllToggle(this.props.stateName)}>
-                        {(this.state.SelectAll) ? 'Deselect All' : 'Select All' }
-                    </button>
-                </h3>
-                {this.props.localLocations.map((showLocation) => { return (
-                    <Checkbox 
+            <div className='stateContainer'>
+                <div className='stateHeader'>
+                    <h3>{stateFullName[this.props.stateName]} </h3>
+                    <a onClick={() => this.selectAllToggle(this.props.stateName)}>
+                        {(this.state.SelectAll) ? 'Deselect All' : 'Select All'}
+                    </a>
+                </div>
+                <div className='stateContent'>
+                    {this.props.localLocations.map((showLocation) => { return (
+                        <Checkbox 
                         key={showLocation.id}
                         id={showLocation.id}
                         localStore={showLocation}
@@ -63,8 +68,9 @@ class CheckboxWrapper extends Component {
                         checkChangeHandler={this.checkChangeHandler}
                         checkUpdater={this.checkUpdater}
                         />
-                )
-                })}
+                        )
+                    })}
+                </div>
             </div>
         )
     }

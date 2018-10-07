@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import CheckboxWrapper from './checkboxWrapper';
 
 
-class CheckboxWindow extends Component {
+class CheckboxWindow extends React.Component {
     render() {
         return (
             <div>
@@ -11,12 +11,12 @@ class CheckboxWindow extends Component {
                     return (
                         <CheckboxWrapper
                             key={locationState}  
-                            stateName={locationState} 
                             localLocations={this.props.stateSort[locationState]}
-                            toggleLocation={this.props.toggleLocation} 
-                            stateSelectAll={this.props.stateSelectAll}
-                            stateDeSelectAll={this.props.stateDeSelectAll} 
                             selected = {this.props.selected}
+                            stateName={locationState} 
+                            stateDeSelectAll={this.props.stateDeSelectAll} 
+                            stateSelectAll={this.props.stateSelectAll}
+                            toggleLocation={this.props.toggleLocation} 
                         />
                     )
                 })}

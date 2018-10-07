@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -25,4 +25,211 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+} */
+
+
+
+.app {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
 }
+
+.mainWrapper {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  text-align: left;
+  height: 100vh;
+
+}
+
+.dataWrapper {
+  flex: 1.5;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.mapWrapper {
+  flex: 1;
+}
+.dataWrapper::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.dataWrapper::-webkit-scrollbar {
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.dataWrapper::-webkit-scrollbar-thumb {
+	background-color: #1357e9a9;
+  border: 2px solid #1357e9a9;
+  border-radius: 25%;
+}
+
+.stateWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.stateContainer {
+  box-shadow: 0 0 7px -2px rgba(0, 0, 0, 0.3);
+  flex-basis: 100%;
+}
+.stateHeader {
+  background: whitesmoke;
+    box-shadow: 0px 1px 8px -4px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  text-align: left;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 0px;
+  font-family: sans-serif;
+  height: 40px;
+  
+}
+
+.stateHeader h3 {
+  font-size: 1.6rem;;
+  font-family: sans-serif;
+  display: inline-block;
+  margin: 0px;
+  margin-top: 10px;
+}
+.stateHeader a {
+    float: right;
+    margin-top: 10px;
+    padding-right: 2%;
+    font-size: 14px;
+    text-decoration: underline;
+    color: #808080bf;
+    cursor: pointer;
+}
+
+.stateContent {
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.stateContent::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.stateContent::-webkit-scrollbar {
+	width: 0px;
+	background-color: #F5F5F5;
+}
+
+.stateContent::-webkit-scrollbar-thumb {
+	background-color: #1357e9a9;
+  border: 2px solid #1357e9a9;
+  border-radius: 25%;
+}
+
+input[type=checkbox], input[type=radio] {
+    margin: 4px 10px 0 0;
+}
+
+/* The container */
+.stateCheckbox {
+  /* min-width: 200px; */
+  height: 45px;
+  padding: 5px 0px 5px 10px;
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 4px 4px -6px grey;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.stateCheckbox h6 {
+  margin: 0;
+  padding-left: 29px;
+}
+.stateCheckbox label {
+  font-weight: 600;
+}
+
+/* Hide the browser's default checkbox */
+.stateCheckboxinput {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  margin: 4px 10px 0 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  height: 17px;
+  width: 17px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.stateCheckbox:hover input ~ .checkmark {
+  background-color: #fff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.stateCheckbox input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.stateCheckbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.stateCheckbox .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(33deg);
+}
+
+
+
+@media screen and (min-width: 450px){
+  .dataWrapper {
+    flex: 1;
+  }
+  .mapWrapper {
+    flex: 1;
+  }
+}
+
+@media screen and (min-width: 760px){
+  .stateContainer {
+    box-shadow: 0 0 7px -2px rgba(0, 0, 0, 0.3);
+    flex-basis: 50%;
+  }
+}
+

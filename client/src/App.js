@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import './App.css';
-import MapContainer from './Components/map'
-import LocationData from './locations.json';
+import React from 'react';
+
 import CheckboxWindow from './Components/checkboxWindow';
+import LocationData from './locations.json';
+import MapContainer from './Components/map'
 import Search from './Components/search';
+import SearchHeader from './Components/searchHeader';
+import styles from './App.css';
 
-
-
-class App extends Component {
+class App extends React.Component {
     constructor(props) {
       super(props) 
       this.state = {
@@ -19,8 +19,20 @@ class App extends Component {
           locations[state].push({name, address, city, state, zip_code, country, longitude, latitude, id});
           return locations;
           }, {}),
-        customerStates: [...new Set(LocationData.map(location => location.state))]
+        customerStates: [...new Set(LocationData.map(location => location.state))],
+        searchTerm: ''
       }
+    }
+    
+    searchHandler = (term) => {
+      this.setState({ searchTerm: term });
+    }
+    stateSelectAll = (selectedState) => {
+      this.setState({selected: [...this.state.selected,...this.state.locations.filter((location) => location.state === selectedState)]});
+    }
+    stateDeSelectAll = (deSelectedState) => {
+      let updated = this.state.selected.filter((location) => location.state !== deSelectedState);
+      this.setState({selected: updated});
     }
     
     toggleLocation = (locationID) => {
@@ -30,28 +42,34 @@ class App extends Component {
         this.setState({selected: this.state.selected.filter((selected) => selected.id !== locationID)})
       }
     }
-
-    stateSelectAll = (selectedState) => {
-      this.setState({selected: [...this.state.selected,...this.state.locations.filter((location) => location.state === selectedState)]});
-    }
-    stateDeSelectAll = (deSelectedState) => {
-      let updated = this.state.selected.filter((location) => location.state !== deSelectedState);
-      this.setState({selected: updated});
-    }
-
-  render() {
+    render() {
     return (
-      <div className="App">
-      <div className='row'>
-        <div className='col-md-6'>
-          <Search customerStates={this.state.customerStates} locations={this.state.locations} toggleLocation= {this.toggleLocation} selected={this.state.selected} stateSort={this.state.stateSort} stateSelectAll={this.stateSelectAll} stateDeSelectAll={this.stateDeSelectAll}/>
+      <section className={  styles.app  }>
+        <SearchHeader
+          searchHandler={  this.searchHandler }
+          />
+        <div className='mainWrapper'>
+          <div className='dataWrapper'>
+            <Search 
+              customerStates={  this.state.customerStates  } 
+              locations={  this.state.locations  } 
+              searchTerm = {  this.state.searchTerm  }
+              selected={  this.state.selected  } 
+              stateDeSelectAll={  this.stateDeSelectAll  }
+              stateSelectAll={  this.stateSelectAll  } 
+              stateSort={  this.state.stateSort  } 
+              toggleLocation= {  this.toggleLocation  } 
+              />
+          </div>
           {/* <CheckboxWindow locations={this.state.locations} toggleLocation= {this.toggleLocation} selected={this.state.selected} stateSort={this.state.stateSort} stateSelectAll={this.stateSelectAll} stateDeSelectAll={this.stateDeSelectAll}/> */}
+          <div className='mapWrapper'>
+            <MapContainer 
+              locations ={  this.state.locations  } 
+              selected={  this.state.selected}  
+              />
+          </div>
         </div>
-        <div className='col-md-6'>
-          <MapContainer locations ={this.state.locations} selected={this.state.selected}/>
-        </div>
-      </div>
-      </div>
+      </section>
     );
   }
 }

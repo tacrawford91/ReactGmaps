@@ -10,7 +10,7 @@ export class MapContainer extends Component {
     return (
       <div>
         <Map google={this.props.google} zoom={10} 
-          style={{width: '500px', height: '500px'}}
+          style={{width: '600px', height: '600px'}}
         >
           {this.props.locations.map((location) => {
             return (this.props.selected.filter((currentPin) => location.id === currentPin.id).length === 1) ?                 
