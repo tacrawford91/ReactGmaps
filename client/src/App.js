@@ -1,10 +1,13 @@
 import React from 'react';
 
+import Geolocator from './Components/geolocator'
 import LocationData from './locations.json';
 import MapContainer from './Components/map'
 import CheckboxWindow from './Components/checkboxWindow';
 import SearchHeader from './Components/searchHeader';
 import styles from './App.css';
+
+import { geolocated } from 'react-geolocated';
 
 class App extends React.Component {
     constructor(props) {
@@ -14,7 +17,8 @@ class App extends React.Component {
         selected: [],
         customerStates: [...new Set(LocationData.map(location => location.state))],
         searchTerm: '',
-        allSelected: 0
+        allSelected: 0,
+        userLocation: {longitude: 0, latitude: 0}
       }
     }
     
@@ -23,6 +27,10 @@ class App extends React.Component {
         allSelected: 0,
         selected: []
       })
+    }
+    getUserLocation = (location) => {
+      console.log(location)
+      this.setState({ userLocation: { longitude: 0, latitude: 0 }})
     }
     hideInfo = () => {
       this.setState({ showInfo: 0 });
@@ -60,7 +68,10 @@ class App extends React.Component {
     }
     render() {
     return (
-      <section className={  styles.app  }>
+      <section className={  styles.app  }> 
+      <Geolocator 
+        getUserLocation={this.getUserLocation}
+        />
         <SearchHeader
           deSelectAll = { this.deSelectAll  }
           hideInfo = {  this.hideInfo  }
